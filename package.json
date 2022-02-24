@@ -1,0 +1,24 @@
+{
+  "name": "next",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc --watch",
+    "start": "pm2 start dist/*.js --watch dist"
+  },
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-better-router": "^2.1.1",
+    "koa-bodyparser": "^2.5.0",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.5",
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^17.0.21"
+  }
+}
