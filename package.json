@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc --watch",
-    "start": "pm2 start dist/*.js --watch dist"
+    "start": "pm2 start dist/index.js --watch dist"
   },
   "dependencies": {
     "koa": "^2.13.4",

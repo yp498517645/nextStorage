@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import { DB_URL } from "./constent";
+import { DB_URL } from "./constant";
 
 //连接数据库
 mongoose.connect(DB_URL);

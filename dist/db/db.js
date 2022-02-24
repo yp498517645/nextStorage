@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
-var constent_1 = require("./constent");
+var constant_1 = require("./constant");
 //连接数据库
-mongoose.connect(constent_1.DB_URL);
+mongoose.connect(constant_1.DB_URL);
 mongoose.connection.on("connected", function () {
-    console.log("Mongoose connection open to " + constent_1.DB_URL);
+    console.log("Mongoose connection open to " + constant_1.DB_URL);
 });
 //连接异常 error 数据库连接错误
 mongoose.connection.on('error', function (err) {
