@@ -1,11 +1,11 @@
 import mongoose from "./db";
-//模式对象，通过Schema可以对集合进行约束
+//模式对象，通过Schema可以对集合进行约束 相当于表的结构
 const Schema = mongoose.Schema;
 
 export interface UserType {
-  username:object,
-  password:object,
-  token:string
+  username: object;
+  password: object;
+  isAdmin: object;
 }
 
 export const user = new Schema<UserType>({
@@ -18,5 +18,8 @@ export const user = new Schema<UserType>({
     type: String,
     required: true,
   },
-  token: String,
+  isAdmin: {
+    type: Boolean,
+    required: true,
+  },
 });

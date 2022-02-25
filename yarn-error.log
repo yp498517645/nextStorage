@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/alonced/.nvm/versions/node/v17.5.0/bin/node /opt/homebrew/bin/yarn add @types/koa-better-router
+  /Users/alonced/.nvm/versions/node/v17.5.0/bin/node /opt/homebrew/bin/yarn add @types/koa-body
 
 PATH: 
   /Users/alonced/.nvm/versions/node/v17.5.0/bin:/Users/alonced/.nvm/versions/node/v17.5.0/bin:/Users/alonced/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/alonced/.nvm/versions/node/v17.5.0/bin:/Users/alonced/bin:/opt/homebrew/bin:/Users/alonced/.yarn/bin:/opt/homebrew/bin:/Users/alonced/.yarn/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/@types%2fkoa-better-router: [NOT_FOUND] @types/koa-better-router not found
+  Error: https://registry.npm.taobao.org/@types%2fkoa-body: [NOT_FOUND] @types/koa-body not found
       at Request.params.callback [as _callback] (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:67029:18)
       at Request.self.callback (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:140883:22)
       at Request.emit (node:events:526:28)
@@ -35,12 +35,12 @@ npm manifest:
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "tsc": "tsc --watch",
-      "start": "pm2 start dist/api.js --watch dist"
+      "start": "pm2 start dist/index.js --watch dist"
     },
     "dependencies": {
-      "@types/koa-router": "^7.4.4",
       "koa": "^2.13.4",
       "koa-better-router": "^2.1.1",
+      "koa-body": "^4.2.0",
       "koa-bodyparser": "^2.5.0",
       "koa-router": "^10.1.1",
       "mongoose": "^6.2.3"
@@ -48,6 +48,7 @@ npm manifest:
     "devDependencies": {
       "@types/koa": "^2.13.4",
       "@types/koa-bodyparser": "^4.3.5",
+      "@types/koa-router": "^7.4.4",
       "@types/node": "^17.0.21"
     }
   }
@@ -116,6 +117,13 @@ Lockfile:
       "@types/qs" "*"
       "@types/serve-static" "*"
   
+  "@types/formidable@^1.0.31":
+    version "1.2.5"
+    resolved "https://registry.npmmirror.com/@types/formidable/-/formidable-1.2.5.tgz#561d026e5f09179e5c8ef7b31e8f4652e11abe4c"
+    integrity sha512-zu3mQJa4hDNubEMViSj937602XdDGzK7Q5pJ5QmLUbNxclbo9tZGt5jtwM352ssZ+pqo5V4H14TBvT/ALqQQcA==
+    dependencies:
+      "@types/node" "*"
+  
   "@types/http-assert@*":
     version "1.5.3"
     resolved "https://registry.npmmirror.com/@types/http-assert/-/http-assert-1.5.3.tgz"
@@ -147,28 +155,14 @@ Lockfile:
   
   "@types/koa-router@^7.4.4":
     version "7.4.4"
-    resolved "https://registry.npmmirror.com/@types/koa-router/-/koa-router-7.4.4.tgz"
+    resolved "https://registry.npmmirror.com/@types/koa-router/-/koa-router-7.4.4.tgz#db72bde3616365d74f00178d5f243c4fce7da572"
     integrity sha512-3dHlZ6CkhgcWeF6wafEUvyyqjWYfKmev3vy1PtOmr0mBc3wpXPU5E8fBBd4YQo5bRpHPfmwC5yDaX7s4jhIN6A==
     dependencies:
       "@types/koa" "*"
   
-  "@types/koa@*":
+  "@types/koa@*", "@types/koa@^2.13.4":
     version "2.13.4"
     resolved "https://registry.npmmirror.com/@types/koa/-/koa-2.13.4.tgz"
-    integrity sha512-dfHYMfU+z/vKtQB7NUrthdAEiSvnLebvBjwHtfFmpZmB7em2N3WVQdHgnFq+xvyVgxW5jKDmjWfLD3lw4g4uTw==
-    dependencies:
-      "@types/accepts" "*"
-      "@types/content-disposition" "*"
-      "@types/cookies" "*"
-      "@types/http-assert" "*"
-      "@types/http-errors" "*"
-      "@types/keygrip" "*"
-      "@types/koa-compose" "*"
-      "@types/node" "*"
-  
-  "@types/koa@^2.13.4":
-    version "2.13.4"
-    resolved "https://registry.npmmirror.com/@types/koa/-/koa-2.13.4.tgz#10620b3f24a8027ef5cbae88b393d1b31205726b"
     integrity sha512-dfHYMfU+z/vKtQB7NUrthdAEiSvnLebvBjwHtfFmpZmB7em2N3WVQdHgnFq+xvyVgxW5jKDmjWfLD3lw4g4uTw==
     dependencies:
       "@types/accepts" "*"
@@ -275,7 +269,7 @@ Lockfile:
       function-bind "^1.1.1"
       get-intrinsic "^1.0.2"
   
-  co-body@^5.1.0:
+  co-body@^5.1.0, co-body@^5.1.1:
     version "5.2.0"
     resolved "https://registry.npmmirror.com/co-body/-/co-body-5.2.0.tgz"
     integrity sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==
@@ -373,6 +367,11 @@ Lockfile:
     integrity sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==
     dependencies:
       is-extendable "^0.1.0"
+  
+  formidable@^1.1.1:
+    version "1.2.6"
+    resolved "https://registry.npmmirror.com/formidable/-/formidable-1.2.6.tgz#d2a51d60162bbc9b4a055d8457a7c75315d1a168"
+    integrity sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==
   
   fresh@~0.5.2:
     version "0.5.2"
@@ -547,6 +546,15 @@ Lockfile:
       lazy-cache "^2.0.1"
       methods "^1.1.2"
       path-match "^1.2.4"
+  
+  koa-body@^4.2.0:
+    version "4.2.0"
+    resolved "https://registry.npmmirror.com/koa-body/-/koa-body-4.2.0.tgz#37229208b820761aca5822d14c5fc55cee31b26f"
+    integrity sha512-wdGu7b9amk4Fnk/ytH8GuWwfs4fsB5iNkY8kZPpgQVb04QZSv85T0M8reb+cJmvLE8cjPYvBzRikD3s6qz8OoA==
+    dependencies:
+      "@types/formidable" "^1.0.31"
+      co-body "^5.1.1"
+      formidable "^1.1.1"
   
   koa-bodyparser@^2.5.0:
     version "2.5.0"

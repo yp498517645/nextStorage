@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 import { DB_URL } from "./constant";
 
 //连接数据库

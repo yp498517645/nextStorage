@@ -36,29 +36,98 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.user = void 0;
+exports.UserController = void 0;
+var user_service_1 = require("../service/user.service");
+var user = new user_service_1.UserService();
 var UserController = /** @class */ (function () {
     function UserController() {
     }
     //注册
     UserController.prototype.register = function (ctx, next) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                ctx.body = "用户注册成功";
-                return [2 /*return*/, next()];
+            var _a, username, password, isAdmin, res, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = ctx.request.body, username = _a.username, password = _a.password, isAdmin = _a.isAdmin;
+                        if (!!username && !!password && !!isAdmin) {
+                            return [2 /*return*/, ctx.body = {
+                                    message: "不能为空"
+                                }];
+                        }
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user.createUser(username, password, isAdmin)];
+                    case 2:
+                        res = _b.sent();
+                        //返回结果
+                        ctx.body = {
+                            code: 200,
+                            message: "用户注册成功",
+                            result: {
+                                id: res.id,
+                                username: res.username,
+                            },
+                        };
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _b.sent();
+                        ctx.body = {
+                            code: 404,
+                            message: "用户注册失败",
+                        };
+                        return [3 /*break*/, 4];
+                    case 4:
+                        next();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     //登陆
     UserController.prototype.login = function (ctx, next) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                ctx.body = "用户登陆成功";
-                return [2 /*return*/, next()];
+            var _a, username, password, res, error_2;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = ctx.request.body, username = _a.username, password = _a.password;
+                        if (!!username && !!password) {
+                            return [2 /*return*/, ctx.body = {
+                                    message: "不能为空"
+                                }];
+                        }
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user.findUser(username, password)];
+                    case 2:
+                        res = _b.sent();
+                        ctx.body = {
+                            code: 200,
+                            message: "用户登陆成功",
+                            result: {
+                                id: res.id,
+                                username: res.username,
+                                token: 
+                            },
+                        };
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_2 = _b.sent();
+                        ctx.body = {
+                            code: 401,
+                            message: "用户登陆失败",
+                        };
+                        return [3 /*break*/, 4];
+                    case 4:
+                        next();
+                        return [2 /*return*/];
+                }
             });
         });
     };
     return UserController;
 }());
-var user = new UserController();
-exports.user = user;
+exports.UserController = UserController;

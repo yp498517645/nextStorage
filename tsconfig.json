@@ -5,6 +5,7 @@
     "noImplicitAny": false,
     "sourceMap": false,
     "outDir": "dist",
+    "esModuleInterop":true,
     "lib": ["es6", "es7"]
   }
 }

@@ -6,14 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc --watch",
-    "start": "pm2 start dist/index.js --watch dist"
+    "start": "nodemon start dist/index.js --watch dist"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-better-router": "^2.1.1",
+    "koa-body": "^4.2.0",
     "koa-bodyparser": "^2.5.0",
     "koa-router": "^10.1.1",
-    "mongoose": "^6.2.3"
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^6.2.3",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
