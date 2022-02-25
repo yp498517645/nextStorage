@@ -51,9 +51,9 @@ var UserController = /** @class */ (function () {
                     case 0:
                         _a = ctx.request.body, username = _a.username, password = _a.password, isAdmin = _a.isAdmin;
                         if (!!username && !!password && !!isAdmin) {
-                            return [2 /*return*/, ctx.body = {
-                                    message: "不能为空"
-                                }];
+                            return [2 /*return*/, (ctx.body = {
+                                    message: "不能为空",
+                                })];
                         }
                         _b.label = 1;
                     case 1:
@@ -93,10 +93,10 @@ var UserController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = ctx.request.body, username = _a.username, password = _a.password;
-                        if (!!username && !!password) {
-                            return [2 /*return*/, ctx.body = {
-                                    message: "不能为空"
-                                }];
+                        if (!!!username && !!!password) {
+                            return [2 /*return*/, (ctx.body = {
+                                    message: "不能为空",
+                                })];
                         }
                         _b.label = 1;
                     case 1:
@@ -110,12 +110,14 @@ var UserController = /** @class */ (function () {
                             result: {
                                 id: res.id,
                                 username: res.username,
-                                token: 
+                                //token保存一小时
+                                token: res.token
                             },
                         };
                         return [3 /*break*/, 4];
                     case 3:
                         error_2 = _b.sent();
+                        console.log(error_2);
                         ctx.body = {
                             code: 401,
                             message: "用户登陆失败",

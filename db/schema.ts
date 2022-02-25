@@ -6,6 +6,7 @@ export interface UserType {
   username: object;
   password: object;
   isAdmin: object;
+  token?:string;
 }
 
 export const user = new Schema<UserType>({
@@ -22,4 +23,8 @@ export const user = new Schema<UserType>({
     type: Boolean,
     required: true,
   },
+  token:{
+    type: String,
+    required: true,
+  }
 });
