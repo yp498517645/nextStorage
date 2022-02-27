@@ -130,6 +130,33 @@ var UserController = /** @class */ (function () {
             });
         });
     };
+    UserController.prototype.getAllUsers = function (ctx, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var res, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, user.getAllUsers()];
+                    case 1:
+                        res = _a.sent();
+                        ctx.body = { data: res };
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        ctx.body = {
+                            code: 404,
+                            message: "查询失败",
+                        };
+                        return [3 /*break*/, 3];
+                    case 3:
+                        next();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return UserController;
 }());
 exports.UserController = UserController;

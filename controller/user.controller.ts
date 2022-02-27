@@ -64,4 +64,18 @@ export class UserController {
     }
     next();
   }
+
+  async getAllUsers(ctx: Context,next: Next){
+    try {
+      const res = await user.getAllUsers()
+      ctx.body = {data:res} 
+    } catch (error) {
+            console.log(error);
+            ctx.body = {
+              code: 404,
+              message: "查询失败",
+            };
+    }
+    next();
+  }
 }

@@ -32,4 +32,10 @@ export class UserService {
     });
     return res;
   }
+
+  //查找所有账号
+  async getAllUsers(){
+    const res = await userModel.find({});
+    return res
+  }
 }
