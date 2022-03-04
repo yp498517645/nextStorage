@@ -9,6 +9,11 @@ export interface UserType {
   token?:string;
 }
 
+export interface AdminType {
+  username: object;
+  password: object;
+}
+
 export const user = new Schema<UserType>({
   username: {
     type: String,
@@ -28,3 +33,16 @@ export const user = new Schema<UserType>({
     required: true,
   }
 });
+//管理员表
+export const admin = new Schema<UserType>({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  }
+});
+

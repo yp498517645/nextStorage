@@ -45,20 +45,20 @@ var UserController = /** @class */ (function () {
     //注册
     UserController.prototype.register = function (ctx, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, username, password, isAdmin, res, error_1;
+            var _a, username, password, res, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = ctx.request.body, username = _a.username, password = _a.password, isAdmin = _a.isAdmin;
-                        if (!!username && !!password && !!isAdmin) {
+                        _a = ctx.request.body, username = _a.username, password = _a.password;
+                        if (!username && !password) {
                             return [2 /*return*/, (ctx.body = {
-                                    message: "不能为空",
+                                    message: "账号密码不能为空",
                                 })];
                         }
                         _b.label = 1;
                     case 1:
                         _b.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, user.createUser(username, password, isAdmin)];
+                        return [4 /*yield*/, user.createUser(username, password, false)];
                     case 2:
                         res = _b.sent();
                         //返回结果
@@ -111,7 +111,7 @@ var UserController = /** @class */ (function () {
                                 id: res.id,
                                 username: res.username,
                                 //token保存一小时
-                                token: res.token
+                                token: res.token,
                             },
                         };
                         return [3 /*break*/, 4];
@@ -151,6 +151,40 @@ var UserController = /** @class */ (function () {
                         };
                         return [3 /*break*/, 3];
                     case 3:
+                        next();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    UserController.prototype.deleteUser = function (ctx, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var username, res, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        username = ctx.request.body.username;
+                        console.log(ctx.request.body);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, user.deleteuser(username)];
+                    case 2:
+                        res = _a.sent();
+                        console.log("deleteUser", res);
+                        ctx.body = {
+                            code: 200,
+                            message: "删除账号成功",
+                        };
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        ctx.body = {
+                            message: "删除账号失败"
+                        };
+                        return [3 /*break*/, 4];
+                    case 4:
                         next();
                         return [2 /*return*/];
                 }

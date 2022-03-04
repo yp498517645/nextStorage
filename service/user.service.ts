@@ -11,7 +11,7 @@ export class UserService {
       "secret"
     );
   }
-  async createUser(username: string, password: string, isAdmin: boolean) {
+  async createUser(username: string, password: string, isAdmin:false) {
     //token保存一小时
 
     //写入数据库
@@ -28,14 +28,19 @@ export class UserService {
     const res = await userModel.findOne({
       username,
       password,
-      token: this.token,
     });
-    return res;
+    return {...res,token: this.token};
   }
 
   //查找所有账号
   async getAllUsers(){
     const res = await userModel.find({});
     return res
+  }
+  // 删除账号 
+  async deleteuser(username: string) {
+    const res = await userModel.deleteOne({ username });
+    return res
+
   }
 }

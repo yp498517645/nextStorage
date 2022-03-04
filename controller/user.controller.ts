@@ -4,18 +4,19 @@ import { UserService } from "../service/user.service";
 const user = new UserService();
 export class UserController {
   //注册
-  
+
   async register(ctx: Context, next: Next) {
     //获取数据
-    const { username, password, isAdmin } = ctx.request.body;
-    if (!!username && !!password && !!isAdmin) {
+    const { username, password } = ctx.request.body;
+    
+    if (!username && !password ) {
       return (ctx.body = {
-        message: "不能为空",
+        message: "账号密码不能为空",
       });
     }
     //写入数据库
     try {
-      const res = await user.createUser(username, password, isAdmin);
+      const res = await user.createUser(username, password,false);
 
       //返回结果
       ctx.body = {
@@ -45,6 +46,7 @@ export class UserController {
     }
     try {
       const res = await user.findUser(username, password);
+
       ctx.body = {
         code: 200,
         message: "用户登陆成功",
@@ -52,7 +54,7 @@ export class UserController {
           id: res.id,
           username: res.username,
           //token保存一小时
-          token: res.token
+          token: res.token,
         },
       };
     } catch (error) {
@@ -65,16 +67,34 @@ export class UserController {
     next();
   }
 
-  async getAllUsers(ctx: Context,next: Next){
+  async getAllUsers(ctx: Context, next: Next) {
     try {
-      const res = await user.getAllUsers()
-      ctx.body = {data:res} 
+      const res = await user.getAllUsers();
+      ctx.body = { data: res };
     } catch (error) {
-            console.log(error);
-            ctx.body = {
-              code: 404,
-              message: "查询失败",
-            };
+      console.log(error);
+      ctx.body = {
+        code: 404,
+        message: "查询失败",
+      };
+    }
+    next();
+  }
+  async deleteUser(ctx: Context, next: Next) {
+    const { username } = ctx.request.body;
+    console.log(ctx.request.body);
+    try {
+      const res = await user.deleteuser(username);
+      console.log("deleteUser",res)
+      ctx.body = {
+        code: 200,
+        message: "删除账号成功",
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.body = {
+        message: "删除账号失败"
+      }
     }
     next();
   }
