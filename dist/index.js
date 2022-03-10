@@ -9,7 +9,7 @@ var koa2_cors_1 = __importDefault(require("koa2-cors"));
 var userRouter_1 = __importDefault(require("./routers/userRouter"));
 var app = new koa_1.default();
 app.use((0, koa_body_1.default)());
-app.use(userRouter_1.default.routes()).use(userRouter_1.default.allowedMethods());
+app.use(userRouter_1.default.routes()); /* .use(userRouter.allowedMethods()); */
 //解决跨域
 app.use((0, koa2_cors_1.default)({
     origin: function (ctx) {

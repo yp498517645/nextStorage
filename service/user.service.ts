@@ -1,5 +1,6 @@
 import { userModel } from "../db/model";
 import jwt from "jsonwebtoken";
+import { CLIENT_RENEG_LIMIT } from "tls";
 export class UserService {
   token: string;
   constructor() {
@@ -13,7 +14,6 @@ export class UserService {
   }
   async createUser(username: string, password: string, isAdmin:false) {
     //token保存一小时
-
     //写入数据库
     const res = await userModel.create({
       username,
@@ -21,6 +21,7 @@ export class UserService {
       isAdmin,
       token: this.token,
     });
+    console.log(res)
     return res;
   }
   //查找账号
@@ -29,6 +30,7 @@ export class UserService {
       username,
       password,
     });
+    console.log("ssss",res)
     return {...res,token: this.token};
   }
 

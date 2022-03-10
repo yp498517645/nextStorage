@@ -5,7 +5,7 @@ import userRouter from "./routers/userRouter";
 const app: Koa = new Koa();
 
 app.use(koaBody());
-app.use(userRouter.routes()).use(userRouter.allowedMethods());
+app.use(userRouter.routes())/* .use(userRouter.allowedMethods()); */
 //解决跨域
 app.use(
   cors({

@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc --watch",
-    "dev": "nodemon start dist/index.js --watch dist"
+    "dev": "tsc --watch &nodemon start dist/index.js --watch dist"
   },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",

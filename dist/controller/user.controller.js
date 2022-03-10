@@ -93,6 +93,7 @@ var UserController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = ctx.request.body, username = _a.username, password = _a.password;
+                        console.log(username, password);
                         if (!!!username && !!!password) {
                             return [2 /*return*/, (ctx.body = {
                                     message: "不能为空",
@@ -104,16 +105,24 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, user.findUser(username, password)];
                     case 2:
                         res = _b.sent();
-                        ctx.body = {
-                            code: 200,
-                            message: "用户登陆成功",
-                            result: {
-                                id: res.id,
-                                username: res.username,
-                                //token保存一小时
-                                token: res.token,
-                            },
-                        };
+                        if (res['_doc'].username) {
+                            ctx.body = {
+                                code: 200,
+                                message: "用户登陆成功",
+                                result: {
+                                    id: res.id,
+                                    username: res.username,
+                                    //token保存一小时
+                                    token: res.token,
+                                },
+                            };
+                        }
+                        else {
+                            ctx.body = {
+                                code: 401,
+                                message: "用户登陆失败",
+                            };
+                        }
                         return [3 /*break*/, 4];
                     case 3:
                         error_2 = _b.sent();
@@ -181,7 +190,7 @@ var UserController = /** @class */ (function () {
                         error_4 = _a.sent();
                         console.log(error_4);
                         ctx.body = {
-                            message: "删除账号失败"
+                            message: "删除账号失败",
                         };
                         return [3 /*break*/, 4];
                     case 4:
