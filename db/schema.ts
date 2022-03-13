@@ -14,6 +14,13 @@ export interface AdminType {
   password: object;
 }
 
+export interface InfoType {
+  id: number;
+  title: string;
+  price: string;
+  touristRoutePictures:[{url:string}]
+}
+
 export const user = new Schema<UserType>({
   username: {
     type: String,
@@ -46,3 +53,9 @@ export const admin = new Schema<UserType>({
   }
 });
 
+export const info = new Schema<InfoType>({
+  id:Number,
+  title:String,
+  price:String,
+  touristRoutePictures:Array<{url:String}>
+});

@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var koa_router_1 = __importDefault(require("koa-router"));
 var user_controller_1 = require("../controller/user.controller");
 var admin_controller_1 = require("../controller/admin.controller");
+var info_controller_1 = require("../controller/info.controller");
 var user = new user_controller_1.UserController();
 var admin = new admin_controller_1.AdminController();
+var info = new info_controller_1.InfoController();
 var router = new koa_router_1.default({ prefix: "/users" });
 //注册接口
 router.post("/register", user.register);
@@ -15,4 +17,5 @@ router.post("/login", user.login);
 router.get("/findAllUser", user.getAllUsers);
 router.post("/delete", user.deleteUser);
 router.post("/adminlogin", admin.loginAdmin);
+router.get("/findinfo", info.getInfo);
 exports.default = router;

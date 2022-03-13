@@ -14,7 +14,7 @@ app.use(userRouter_1.default.routes()); /* .use(userRouter.allowedMethods()); */
 app.use((0, koa2_cors_1.default)({
     origin: function (ctx) {
         //设置允许来自指定域名请求
-        return "http://localhost:8080"; //只允许http://localhost:8080这个域名的请求
+        return "*";
     },
     maxAge: 5,
     credentials: true,

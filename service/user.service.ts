@@ -1,6 +1,5 @@
 import { userModel } from "../db/model";
 import jwt from "jsonwebtoken";
-import { CLIENT_RENEG_LIMIT } from "tls";
 export class UserService {
   token: string;
   constructor() {
